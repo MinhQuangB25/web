@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Bán Laptop</title>
+    <!-- Liên kết đến file CSS -->
+    <link rel="stylesheet" href="hello.css">
+</head>
+<body>
+    <header>
+        <h1>Cửa Hàng Laptop</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Sản Phẩm</a></li>
+                <li><a href="#">Liên Hệ</a></li>
+                <li><a href="#">Tài Khoản</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="product-list">
+        <div class="product" id="laptop1">
+            <img src="laptop1.jpg" alt="Laptop 1">
+            <h2>Laptop Dell XPS 13</h2>
+            <p>Giá: 25,000,000 VND</p>
+            <button onclick="addToCart('Laptop Dell XPS 13', 25000000)">Thêm vào giỏ</button>
+        </div>
+        <div class="product" id="laptop2">
+            <img src="laptop2.jpg" alt="Laptop 2">
+            <h2>Laptop MacBook Pro</h2>
+            <p>Giá: 35,000,000 VND</p>
+            <button onclick="addToCart('Laptop MacBook Pro', 35000000)">Thêm vào giỏ</button>
+        </div>
+        <div class="product" id="laptop3">
+            <img src="laptop3.jpg" alt="Laptop 3">
+            <h2>Laptop HP Spectre</h2>
+            <p>Giá: 30,000,000 VND</p>
+            <button onclick="addToCart('Laptop HP Spectre', 30000000)">Thêm vào giỏ</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Cửa Hàng Laptop</p>
+    </footer>
+
+    <!-- Liên kết đến file JavaScript -->
+    <script src="hello.js"></script>
+</body>
+</html>
