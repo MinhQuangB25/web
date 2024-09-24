@@ -22,26 +22,53 @@
         </nav>
     </header>
 
-    <section class="product-list">
-        <div class="product" id="laptop1">
-            <img src="laptop1.jpg" alt="Laptop 1">
-            <h2>Laptop Dell XPS 13</h2>
-            <p>Giá: 25,000,000 VND</p>
-            <button  class="btn btn-success" onclick="addToCart('Laptop Dell XPS 13', 25000000)">Thêm vào giỏ</button>
+    <div class="container mt-4">
+        <div class="row">
+            
+            <div class="col-md-8">
+                <section class="product-list">
+                    <div class="product" id="laptop1">
+                        <img src="https://anphat.com.vn/media/product/40665_laptop_dell_xps_13_9310_70273578__1_.jpg" alt="Laptop 1">
+                        <h2>Laptop Dell XPS 13</h2>
+                        <p>Giá: 25,000,000 VND</p>
+                        <button class="btn btn-success" onclick="addToCart('Laptop Dell XPS 13', 25000000)">Thêm vào giỏ</button>
+                    </div>
+                    <div class="product" id="laptop2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTASeYxNtoDAGQ21Mc-VGbV5Q2ElLl2VWCFH2qj5ZNMJbySuCQ&s" alt="Laptop 2">
+                        <h2>Laptop MacBook Pro</h2>
+                        <p>Giá: 35,000,000 VND</p>
+                        <button class="btn btn-success" onclick="addToCart('Laptop MacBook Pro', 35000000)">Thêm vào giỏ</button>
+                    </div>
+                    <div class="product" id="laptop3">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDtr3nS3SJChOJD5Q-5ZihQpS62UOLsIAv3tzY-7Zq0AR6EDW7&s" alt="Laptop 3">
+                        <h2>Laptop HP Spectre</h2>
+                        <p>Giá: 30,000,000 VND</p>
+                        <button class="btn btn-success" onclick="addToCart('Laptop HP Spectre', 30000000)">Thêm vào giỏ</button>
+                    </div>
+                </section>
+            </div>
+
+            
+            <div class="col-md-4">
+                <section id="cart" class="mt-4">
+                    <h2>Giỏ Hàng</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sản Phẩm</th>
+                                <th>Giá</th>
+                                <th>Hành Động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            
+                        </tbody>
+                    </table>
+                    <p id="total-price" class="fw-bold">Tổng cộng: 0 VND</p>
+                </section>
+            </div>
         </div>
-        <div class="product" id="laptop2">
-            <img src="laptop2.jpg" alt="Laptop 2">
-            <h2>Laptop MacBook Pro</h2>
-            <p>Giá: 35,000,000 VND</p>
-            <button class="btn btn-success" onclick="addToCart('Laptop MacBook Pro', 35000000)">Thêm vào giỏ</button>
-        </div>
-        <div class="product" id="laptop3">
-            <img src="laptop3.jpg" alt="Laptop 3">
-            <h2>Laptop HP Spectre</h2>
-            <p>Giá: 30,000,000 VND</p>
-            <button class="btn btn-success" onclick="addToCart('Laptop HP Spectre', 30000000)">Thêm vào giỏ</button>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <p>© 2024 Cửa Hàng Laptop</p>
