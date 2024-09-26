@@ -1,13 +1,39 @@
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+function updateCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.innerText = cart.length;
+    }
+}
 function addToCart(productName, price) {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (!loggedInUser) {
+        alert('Vui lòng đăng nhập trước khi thêm sản phẩm vào giỏ hàng.');
+        window.location.href = 'login.html';
+        return;
+    }
     cart.push({ name: productName, price: price });
+    localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${productName} đã được thêm vào giỏ hàng!`);
    updateCartDisplay();
+   updateCartCount();
+
 }
+function logout() {
+    
+    localStorage.removeItem('loggedInUser'); 
+    alert('Bạn đã đăng xuất thành công!');
+    window.location.href = 'login.html'; 
+}
+
+
+
+
 function updateCartDisplay()
 {
     const cartItems=document.getElementById('cart-items');
+    if (!cartItems) return;
     cartItems.innerHTML=' ';
     let total=0;
     cart.forEach((item, index) => {
@@ -25,5 +51,19 @@ function updateCartDisplay()
 function removeFromCart(index)
 {
     cart.splice(index,1);
+    localStorage.setItem('cart', JSON.stringify(cart));
     updateCartDisplay();
+    updateCartCount();
+}
+function navigateTo(page) {
+    if (page === 'login') {
+      
+        window.location.href = 'login.html'; 
+    } else if (page === 'register') {
+        
+        window.location.href = 'register.html'; 
+    }
+    else {
+        alert('Trang không tồn tại!');
+    }
 }
