@@ -1,12 +1,12 @@
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-function updateCartCount() {
+function updateCartCount() { 
     const cartCountElement = document.getElementById('cart-count');
     if (cartCountElement) {
         cartCountElement.innerText = cart.length;
     }
 }
-function updateCartDisplay() {
+function updateCartDisplay() { 
     const cartItems = document.getElementById('cart-items');
     if (!cartItems) return; 
     cartItems.innerHTML = '';
