@@ -60,7 +60,7 @@
             return;
         }
 
-        // Lưu thông tin người dùng vào localStorage
+      
         const users = JSON.parse(localStorage.getItem('users')) || [];
         users.push({ name, email, password });
         localStorage.setItem('users', JSON.stringify(users));

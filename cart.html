@@ -31,14 +31,14 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Tải giỏ hàng từ localStorage và hiển thị
+                    
                     let cart = JSON.parse(localStorage.getItem('cart')) || [];
                     updateCartDisplay(cart);
                 });
             
-                function updateCartDisplay(cart) {
+                function updateCartDisplay() {
                     const cartItems = document.getElementById('cart-items');
-                    if (!cartItems) return; // Nếu không tìm thấy phần tử, dừng hàm lại
+                    if (!cartItems) return; 
                     cartItems.innerHTML = '';
                     let total = 0;
                     cart.forEach((item, index) => {
@@ -61,7 +61,7 @@
                     updateCartDisplay(cart);
                 }
                 document.addEventListener('DOMContentLoaded', function() {
-                  updateCartDisplay(); // Cập nhật hiển thị giỏ hàng khi tải trang
+                  updateCartDisplay(); 
                         });
             </script>
 </body>
