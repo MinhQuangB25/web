@@ -6,6 +6,34 @@ function updateCartCount() {
         cartCountElement.innerText = cart.length;
     }
 }
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    if (!cartItems) return; 
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach((item, index) => {
+        total += item.price;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.price.toLocaleString('vi-VN')} VND</td>
+            <td><button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Xóa</button></td>
+        `;
+        cartItems.appendChild(row);
+    });
+    document.getElementById('total-price').innerText = `Tổng cộng: ${total.toLocaleString('vi-VN')} VND`;
+    updateCartCount();
+}
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+}
+document.addEventListener('DOMContentLoaded', function() {
+                    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartDisplay();
+});
 function addToCart(productName, price) {
     const loggedInUser = localStorage.getItem('loggedInUser');
     if (!loggedInUser) {
@@ -30,34 +58,8 @@ function logout() {
 
 
 
-function updateCartDisplay() {
-    const cartItems = document.getElementById('cart-items');
-    if (!cartItems) return; 
-    cartItems.innerHTML = '';
-    let total = 0;
-    cart.forEach((item, index) => {
-        total += item.price;
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.name}</td>
-            <td>${item.price.toLocaleString('vi-VN')} VND</td>
-            <td><button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Xóa</button></td>
-        `;
-        cartItems.appendChild(row);
-    });
-    document.getElementById('total-price').innerText = `Tổng cộng: ${total.toLocaleString('vi-VN')} VND`;
-}
-function removeFromCart(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartDisplay(cart);
-}
-document.addEventListener('DOMContentLoaded', function() {
-                    
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    updateCartDisplay(cart);
-});
+
+
 
 function navigateTo(page) {
     if (page === 'login') {
@@ -71,3 +73,40 @@ function navigateTo(page) {
         alert('Trang không tồn tại!');
     }
 }
+function handleLogin(event) {
+    event.preventDefault(); 
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const user = users.find(user => user.email === email && user.password === password);
+
+    
+    if (user) {
+        localStorage.setItem('loggedInUser', email); 
+        alert('Đăng nhập thành công!');
+        window.location.href = 'hello.html'; 
+    } else {
+        alert('Email hoặc mật khẩu không đúng.');
+    }
+}
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    
+    if (password !== confirmPassword) {
+        alert('Mật khẩu xác nhận không khớp.');
+        return;
+    }
+
+  
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    users.push({ name, email, password });
+    localStorage.setItem('users', JSON.stringify(users));
+
+    alert('Đăng ký thành công!');
+    window.location.href = 'login.html'; 
+});
