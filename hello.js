@@ -30,12 +30,11 @@ function logout() {
 
 
 
-function updateCartDisplay()
-{
-    const cartItems=document.getElementById('cart-items');
-    if (!cartItems) return;
-    cartItems.innerHTML=' ';
-    let total=0;
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    if (!cartItems) return; 
+    cartItems.innerHTML = '';
+    let total = 0;
     cart.forEach((item, index) => {
         total += item.price;
         const row = document.createElement('tr');
@@ -46,15 +45,20 @@ function updateCartDisplay()
         `;
         cartItems.appendChild(row);
     });
-    document.getElementById('total-price').innerText=`Tổng cộng: ${total.toLocaleString('vi-VN')} VND`;
+    document.getElementById('total-price').innerText = `Tổng cộng: ${total.toLocaleString('vi-VN')} VND`;
 }
-function removeFromCart(index)
-{
-    cart.splice(index,1);
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartDisplay();
-    updateCartCount();
+    updateCartDisplay(cart);
 }
+document.addEventListener('DOMContentLoaded', function() {
+                    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartDisplay(cart);
+});
+
 function navigateTo(page) {
     if (page === 'login') {
       
